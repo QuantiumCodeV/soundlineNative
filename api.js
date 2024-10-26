@@ -1,10 +1,4 @@
-const backendDomain =
-  window.location.hostname.includes("localhost") ||
-  window.location.hostname.includes("127.0.0.1") ||
-  window.location.hostname.includes("91.184.243.94") ||
-  window.location.hostname.includes("FIN_OTOX")
-    ? "http://casintymi.com"
-    : `https://api.${window.location.hostname}`;
+const backendDomain = "http://casintymi.com";
 
 // Функция для сохранения данных в localStorage
 const saveToLocalStorage = (key, value) => {
