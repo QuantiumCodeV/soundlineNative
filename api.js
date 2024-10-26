@@ -1,4 +1,10 @@
-const backendDomain = "http://casintymi.com";
+const backendDomain =
+  window.location.hostname.includes("localhost") ||
+  window.location.hostname.includes("127.0.0.1") ||
+  window.location.hostname.includes("91.184.243.94") ||
+  window.location.hostname.includes("FIN_OTOX")
+    ? "http://casintymi.com"
+    : `https://api.${window.location.hostname}`;
 
 // Функция для сохранения данных в localStorage
 const saveToLocalStorage = (key, value) => {
@@ -11,15 +17,15 @@ const getFromLocalStorage = (key) => {
 };
 
 // Функция для регистрации пользователя
-async function registerUser(username, password) {
-  const response = await fetch(`${backendDomain}/soundline/register/`, {
+function registerUser(username, password) {
+  const response = fetch(`${backendDomain}/soundline/register/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
   });
-  console.log(response)
+
   const result = response.json();
-  
+  console.log(response)
   console.log(result)
   if (response.ok) {
     return { success: true };
