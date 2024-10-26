@@ -11,15 +11,15 @@ const getFromLocalStorage = (key) => {
 };
 
 // Функция для регистрации пользователя
-function registerUser(username, password) {
-  const response = fetch(`${backendDomain}/soundline/register/`, {
+async function registerUser(username, password) {
+  const response = await fetch(`${backendDomain}/soundline/register/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
   });
-
-  const result = response.json();
   console.log(response)
+  const result = response.json();
+  
   console.log(result)
   if (response.ok) {
     return { success: true };
